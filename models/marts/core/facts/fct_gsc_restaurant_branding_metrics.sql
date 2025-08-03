@@ -47,7 +47,7 @@ final AS (
     -- % of total queries from this search type - shows search volume distribution
     ROUND(CASE WHEN t.restaurant_total_queries > 0 THEN a.query_count * 1.0 / t.restaurant_total_queries ELSE 0 END, 4) AS pct_queries
   FROM aggregated a
-  JOIN totals t ON a.restaurant_id = t.restaurant_id
+  INNER JOIN totals t ON a.restaurant_id = t.restaurant_id
 )
 
 SELECT * FROM final
