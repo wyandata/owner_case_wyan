@@ -1,0 +1,28 @@
+snapshots:
+  - name: snap_restaurant_cuisine
+    description: SCD Type 2 dimension tracking restaurant cuisine changes over time using dbt snapshots
+    
+    columns:
+      - name: restaurant_cuisine_sk
+        description: Surrogate key for restaurant-cuisine combination
+        tests:
+          - not_null
+          - unique
+
+      - name: restaurant_id
+        description: Restaurant identifier
+        tests:
+          - not_null
+          - relationships:
+              to: ref('int_restaurant_cuisines')
+              field: restaurant_id
+
+      - name: cuisine
+        description: Cuisine type
+        tests:
+          - not_null
+
+      - name: updated_at
+        description: Timestamp when this record was created
+        tests:
+          - not_null

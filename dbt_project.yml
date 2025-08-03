@@ -1,0 +1,26 @@
+# Just an example for what a dbt_project.yml file may look like, doesn't actually run
+
+name: de_case_wyan
+version: '1.10.6'
+config-version: 2
+
+require-dbt-version: [">=1.10.*"]
+
+profile: dbt_weiwei
+
+model-paths: ["models"]
+snapshot-paths: ["snapshots"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+packages-install-path: "dbt_packages"
+
+models:
+  de_case_wyan:
+    +materialized: view
+    staging:
+      +schema: de_case_wyan_schema
+    intermediate:
+      +schema: de_case_wyan_schema
+    marts:
+      +schema: de_case_wyan_schema

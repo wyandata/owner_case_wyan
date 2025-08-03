@@ -1,0 +1,57 @@
+models:
+  - name: int_gsc_export_flattened
+    description: Flattened GSC data per restaurant and search query
+    
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - restaurant_id
+            - search_query
+    
+    columns:
+      - name: restaurant_id
+        description: Restaurant identifier
+        tests:
+          - not_null
+
+      - name: domain
+        description: Website domain of the restaurant
+        tests:
+          - not_null
+
+      - name: domain_cleaned
+        description: Cleaned and normalized domain name for matching
+        tests:
+          - not_null
+
+      - name: search_query
+        description: Search query from GSC data
+        tests:
+          - not_null
+
+      - name: clicks
+        description: Number of clicks for this query
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "clicks >= 0"
+
+      - name: impressions
+        description: Number of impressions for this query
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "impressions >= 0"
+
+      - name: ctr
+        description: Click-through rate
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "ctr >= 0 AND ctr <= 1"
+
+      - name: position
+        description: Average search position
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "position >= 0"
+              

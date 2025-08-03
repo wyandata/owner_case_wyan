@@ -1,0 +1,55 @@
+models:
+  - name: int_gsc_classified
+    description: Classifies GSC queries as branded/unbranded using regex, fuzzy matching, and AI similarity
+    
+    columns:
+      - name: restaurant_id
+        description: Restaurant identifier
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_restaurants')
+              field: restaurant_id
+
+      - name: search_query
+        description: GSC search query
+        tests:
+          - not_null
+
+      - name: domain_cleaned
+        description: Cleaned restaurant domain for matching
+        tests:
+          - not_null
+
+      - name: match_type
+        description: Matching method used (regex, jarowinkler, ai, or null for unmatched)
+        tests:
+          - accepted_values:
+              values: ['regex', 'jarowinkler', 'ai', null]
+
+      - name: is_branded
+        description: Whether query mentions restaurant name
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: total_clicks
+        description: Total clicks for this query
+        tests:
+          - not_null
+
+      - name: total_impressions
+        description: Total impressions for this query
+        tests:
+          - not_null
+
+      - name: avg_ctr
+        description: Average click-through rate
+        tests:
+          - not_null
+
+      - name: avg_position
+        description: Average search position
+        tests:
+          - not_null

@@ -1,0 +1,17 @@
+models:
+  - name: int_restaurant_cuisines
+    description: Flattens restaurant cuisine arrays and handles restaurants without cuisines
+    
+    columns:
+      - name: restaurant_id
+        description: Restaurant identifier
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_restaurants')
+              field: restaurant_id
+
+      - name: cuisine
+        description: Individual cuisine type (or 'unknown' if no cuisine data)
+        tests:
+          - not_null

@@ -1,0 +1,13 @@
+sources:
+  - name: fivetran_data_outputs
+    database: pc_fivetran_db
+    schema: data_outputs
+    tables:
+      - name: hex_case_gsc_export
+        loaded_at_field: _updated_at
+        # GSC data is aggregated in 3-day totals, so warn after 3 days and error after 6 days
+        freshness:
+          warn_after: {count: 3, period: day}
+          error_after: {count: 6, period: day}
+      
+      - name: hex_brand_cuisine_export

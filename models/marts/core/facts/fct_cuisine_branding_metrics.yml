@@ -1,0 +1,71 @@
+models:
+  - name: fct_cuisine_branding_metrics
+    description: Aggregated GSC metrics by cuisine and branded/unbranded queries
+    
+    columns:
+      - name: cuisine
+        description: Cuisine type
+        tests:
+          - not_null
+
+      - name: is_branded
+        description: Whether queries were branded or unbranded
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: total_clicks
+        description: Total clicks for this cuisine/branding combination
+        tests:
+          - not_null
+
+      - name: total_impressions
+        description: Total impressions for this cuisine/branding combination
+        tests:
+          - not_null
+
+      - name: query_count
+        description: Number of unique queries
+        tests:
+          - not_null
+
+      - name: avg_ctr
+        description: Average click-through rate
+        tests:
+          - not_null
+
+      - name: avg_position
+        description: Average search position
+        tests:
+          - not_null
+
+      - name: cuisine_total_clicks
+        description: Total clicks across all branding types for this cuisine
+        tests:
+          - not_null
+
+      - name: cuisine_total_impressions
+        description: Total impressions across all branding types for this cuisine
+        tests:
+          - not_null
+
+      - name: cuisine_total_queries
+        description: Total queries across all branding types for this cuisine
+        tests:
+          - not_null
+
+      - name: pct_clicks
+        description: Percentage of cuisine clicks from this branding type
+        tests:
+          - not_null
+
+      - name: pct_impressions
+        description: Percentage of cuisine impressions from this branding type
+        tests:
+          - not_null
+
+      - name: pct_queries
+        description: Percentage of cuisine queries from this branding type
+        tests:
+          - not_null

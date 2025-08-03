@@ -1,0 +1,74 @@
+models:
+  - name: fct_gsc_restaurant_branding_metrics
+    description: Aggregated GSC metrics by restaurant and branded/unbranded queries
+    
+    columns:
+      - name: restaurant_id
+        description: Restaurant identifier
+        tests:
+          - not_null
+          - relationships:
+              to: ref('int_gsc_classified')
+              field: restaurant_id
+
+      - name: is_branded
+        description: Whether queries were branded or unbranded
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+      - name: total_clicks
+        description: Total clicks for this restaurant/branding combination
+        tests:
+          - not_null
+
+      - name: total_impressions
+        description: Total impressions for this restaurant/branding combination
+        tests:
+          - not_null
+
+      - name: query_count
+        description: Number of unique queries
+        tests:
+          - not_null
+
+      - name: avg_ctr
+        description: Average click-through rate
+        tests:
+          - not_null
+
+      - name: avg_position
+        description: Average search position
+        tests:
+          - not_null
+
+      - name: restaurant_total_clicks
+        description: Total clicks across all branding types for this restaurant
+        tests:
+          - not_null
+
+      - name: restaurant_total_impressions
+        description: Total impressions across all branding types for this restaurant
+        tests:
+          - not_null
+
+      - name: restaurant_total_queries
+        description: Total queries across all branding types for this restaurant
+        tests:
+          - not_null
+
+      - name: pct_clicks
+        description: Percentage of restaurant clicks from this branding type
+        tests:
+          - not_null
+
+      - name: pct_impressions
+        description: Percentage of restaurant impressions from this branding type
+        tests:
+          - not_null
+
+      - name: pct_queries
+        description: Percentage of restaurant queries from this branding type
+        tests:
+          - not_null
