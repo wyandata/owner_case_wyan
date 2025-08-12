@@ -4,6 +4,7 @@ WITH parsed AS (
         domain,
         TRY_PARSE_JSON(data) AS parsed_data
     FROM {{ ref('stg_gsc_export') }} 
+    WHERE status = 'success'
 ),
 
 flattened AS (
