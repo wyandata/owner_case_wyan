@@ -7,18 +7,7 @@ Owner optimizes SEO on behalf of restaurants to increase their sales volume by d
 
 - **Unbranded searches** (e.g., "pizza near me"): Users have high intent to order but haven't chosen a specific restaurant. This is where the real growth opportunity lies - helping restaurants rank higher in unbranded searches to generate new sales they wouldn't have otherwise.
 
-**Key Business Question**: How do we track progress and identify improvement opportunities in unbranded searches to help restaurants acquire new customers through Google search?
-
-## SCD Methodology for Restaurant Cuisine Changes
-
-To handle restaurants that change their cuisine types over time, I implemented a **SCD Type 2 strategy** using dbt snapshots. This approach:
-
-1. **Tracks cuisine changes over time** using dbt's snapshot functionality
-2. **Preserves historical records** while creating new records for changes
-3. **Enables temporal analysis** to see how cuisine changes impact search performance
-4. **Ensures data integrity** by joining historical GSC data with the correct cuisine that was active at search time
-
-**Implementation**: See `snapshots/snap_restaurant_cuisine.sql` for the SCD Type 2 demonstration using dbt snapshots.
+**Key Business Question**: How do I grow my restaurant efficiently with limited resources?
 
 ## What this does
 This analysis answers the core business question by classifying Google Search Console data into branded vs unbranded searches and measuring performance across both segments. It helps restaurant marketing teams understand:
@@ -88,6 +77,17 @@ models/
 - **`fct_gsc_restaurant_branding_metrics`**: Restaurant-level performance by branded/unbranded queries
 - **`fct_cuisine_branding_metrics`**: Cuisine-level performance by branded/unbranded queries
 - **`snap_restaurant_cuisine`**: SCD Type 2 snapshot tracking cuisine changes over time
+
+## SCD Methodology for Restaurant Cuisine Changes
+
+To handle restaurants that change their cuisine types over time, I implemented a **SCD Type 2 strategy** using dbt snapshots. This approach:
+
+1. **Tracks cuisine changes over time** using dbt's snapshot functionality
+2. **Preserves historical records** while creating new records for changes
+3. **Enables temporal analysis** to see how cuisine changes impact search performance
+4. **Ensures data integrity** by joining historical GSC data with the correct cuisine that was active at search time
+
+**Implementation**: See `snapshots/snap_restaurant_cuisine.sql` for the SCD Type 2 demonstration using dbt snapshots.
 
 ## What you get
 - **Restaurant-level insights**: Which restaurants rely more on brand recognition vs organic discovery
